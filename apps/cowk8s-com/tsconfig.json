@@ -1,0 +1,16 @@
+{
+  "extends": "@cowk8s/tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../../packages/types/*.d.ts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "strictNullChecks": true
+  },
+  "plugins": [
+    {
+      "name": "next"
+    }
+  ]
+}

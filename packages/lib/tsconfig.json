@@ -1,0 +1,5 @@
+{
+  "extends": "@cowk8s/tsconfig/js-library.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}

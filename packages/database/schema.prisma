@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// generator dbml {
+//  provider = "prisma-dbml-generator"
+// }
+
+generator zod {
+  provider      = "zod-prisma"
+  output        = "./zod"
+  imports       = "./zod-utils"
+  relationModel = "default"
+}
+
+
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
+model Attribute {
+  id               String         @id @default(cuid())
+  createdAt        DateTime       @default(now()) @map(name: "created_at")
+  updatedAt        DateTime       @updatedAt @map(name: "updated_at")
+  attributeClass   AttributeClass @relation(fields: [attributeClassId], references: [id], onDelete: Cascade)
+  attributeClassId String
+
+  personId         String
+  value            String
+
+
+}
+
+enum AttributeType {
+  code
+  noCode
+  automatic
+}
+
+model AttributeClass {
+  id               String                  @id @default(cuid())
+  createdAt        DateTime                @default(now()) @map(name: "created_at")
+  updatedAt        DateTime                @updatedAt @map(name: "updated_at")
+  name             String
+  description      String?
+
+  type             AttributeType
+  environmentId    String
+  attributes       Attribute[]
+}
+
+model Person {
+  id            String      @id @default(cuid())
+  userId        String
+  createdAt     DateTime    @default(now()) @map(name: "created_at")
+  updatedAt     DateTime    @updatedAt @map(name: "updated_at")
+
+  environmentId String
+}
+
+model Response {
+  id               String            @id @default(cuid())
+  createdAt        DateTime          @default(now()) @map(name: "created_at")
+  updatedAt        DateTime          @updatedAt @map(name: "updated_at")
+  finished         Boolean           @default(false)
+
+  surveyId         String
+
+  data             Json              @default("{}")
+
+  meta             Json              @default("{}")
+}
+
+enum SurveyStatus {
+  draft
+  inProgress
+  paused
+  completed
+}
+
+enum DisplayStatus {
+  seen
+  responded
+}
+
+enum SurveyType {
+  email
+  link
+  mobile
+  web
+}
+
+enum displayOptions {
+  displayOnce
+  displayMultiple
+  respondMultiple
+}
+
+enum EventType {
+  code
+  noCode
+  automatic
+}
+
+enum EnvironmentType {
+  production
+  development
+}
+
+enum Plan {
+  free
+  pro
+}
+
+enum MembershipRole {
+  owner
+  admin
+  editor
+  developer
+  viewer
+}
+
+enum IdentityProvider {
+  email
+  github
+}

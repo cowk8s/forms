@@ -1,0 +1,40 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "@cowk8s/database#build": {
+      "cache": false,
+      "dependsOn": ["post-install"]
+    },
+    "@cowk8s/js#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "@cowk8s/surveys#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "@cowk8s/types#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "env": [
+      ]
+    },
+    "post-install": {
+      "cache": false,
+      "dependsOn": [],
+      "outputs": [],
+      "inputs": []
+    },
+    "db:migrate:dev": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

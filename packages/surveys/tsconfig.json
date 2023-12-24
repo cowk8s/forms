@@ -1,0 +1,13 @@
+{
+  "extends": "@cowk8s/tsconfig/js-library.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "@cowk8s/tsconfig/js-library.json",
+  "include": ["src", "package.json"],
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "noEmit": true
+  }
+}

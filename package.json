@@ -1,0 +1,24 @@
+{
+  "name": "azidev",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "db:migrate:dev": "turbo run db:migrate:dev",
+    "dev": "turbo run dev --parallel"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "lint-staged": "^15.1.0",
+    "tsx": "^4.2.0",
+    "turbo": "^1.10.16"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "packageManager": "pnpm@8.11.0"
+}
