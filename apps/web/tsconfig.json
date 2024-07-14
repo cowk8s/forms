@@ -1,11 +1,12 @@
 {
-  "extends": "@cowk8s/tsconfig/nextjs.json",
+  "extends": "@cowk8s/config-typescript/nextjs.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../../packages/types/*.d.ts"],
-  "exclude": ["../../.env"],
+  "exclude": ["../../.env", "node_modules"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@prisma/client/*": ["@cowk8s/database/client/*"]
     },
     "plugins": [
       {

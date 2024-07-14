@@ -64,6 +64,6 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "@cowk8s/tsconfig": "workspace:*"
+    "@cowk8s/config-typescript": "workspace:*"
   }
 }

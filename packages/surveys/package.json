@@ -33,7 +33,7 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "devDependencies": {
-    "@cowk8s/tsconfig": "workspace:*",
+    "@cowk8s/config-typescript": "workspace:*",
     "@preact/preset-vite": "^2.7.0",
     "autoprefixer": "^10.4.16",
     "eslint-config-prettier": "^9.1.0",

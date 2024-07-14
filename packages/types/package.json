@@ -1,17 +1,17 @@
 {
-    "name": "@cowk8s/types",
-    "version": "0.0.0",
-    "private": true,
-    "main": "index.ts",
-    "sideEffects": false,
-    "scripts": {
-      "clean": "rimraf node_modules .turbo"
-    },
-    "devDependencies": {
-      "@cowk8s/tsconfig": "workspace:*"
-    },
-    "dependencies": {
-      "zod": "^3.22.4"
-    }
+  "name": "@cowk8s/types",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "sideEffects": false,
+  "scripts": {
+    "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
+    "clean": "rimraf node_modules .turbo"
+  },
+  "devDependencies": {
+    "@cowk8s/config-typescript": "workspace:*"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
   }
-  
+}

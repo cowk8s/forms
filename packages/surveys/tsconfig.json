@@ -1,8 +1,10 @@
 {
-  "extends": "@cowk8s/tsconfig/js-library.json",
-  "include": ["src"],
+  "extends": "@cowk8s/config-typescript/js-library.json",
+  "include": ["src", "../types/surveys.d.ts"],
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "isolatedModules": true,
+    "emitDeclarationOnly": true,
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "baseUrl": ".",

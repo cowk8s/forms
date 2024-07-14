@@ -8,11 +8,11 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "devDependencies": {
-    "@cowk8s/tsconfig": "workspace:*",
+    "@cowk8s/config-typescript": "workspace:*",
+    "@cowk8s/eslint-config": "workspace:*",
     "@cowk8s/types": "workspace:*",
     "@types/react": "^18.2.45",
     "concurrently": "^8.2.2",
-    "eslint-config-cowk8s": "workspace:*",
     "postcss": "^8.4.32",
     "react": "18.2.0"
   },

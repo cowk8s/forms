@@ -31,8 +31,8 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "devDependencies": {
+    "@cowk8s/config-typescript": "workspace:*",
     "@cowk8s/types": "workspace:*",
-    "@cowk8s/tsconfig": "workspace:*",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-turbo": "latest",
     "terser": "^5.26.0",

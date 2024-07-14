@@ -1,11 +1,10 @@
 {
-    "extends": "@azidev/tsconfig/base.json",
-    "include": ["."],
-    "exclude": ["dist", "build", "node_modules"],
-    "compilerOptions": {
-      "composite": true,
-      "outDir": "./dist",
-      "rootDir": "./"
-    }
+  "extends": "@cowk8s/config-typescript/base.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./"
   }
-  
+}

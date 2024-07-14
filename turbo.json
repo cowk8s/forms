@@ -25,9 +25,13 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"],
+      "outputs": ["dist/**", ".next/**"],
       "env": [
       ]
+    },
+    "build:dev": {
+      "dependsOn": ["^build:dev"],
+      "outputs": ["dist/**", ".next/**"]
     },
     "post-install": {
       "cache": false,
