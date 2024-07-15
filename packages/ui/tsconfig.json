@@ -1,5 +1,8 @@
 {
-  "extends": "@cowk8s/tsconfig/react-library.json",
-  "include": ["."],
-  "exclude": ["build", "node_modules"]
+  "extends": "@cowk8s/config-typescript/react-library.json",
+  "include": [".", "../types/*.d.ts", "../lib/templates.ts"],
+  "exclude": ["build", "node_modules"],
+  "compilerOptions": {
+    "lib": ["ES2021.String"]
+  }
 }

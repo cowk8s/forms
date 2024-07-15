@@ -1,5 +1,18 @@
 {
-  "extends": "@cowk8s/tsconfig/js-library.json",
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "extends": "@cowk8s/config-typescript/nextjs.json",
+  "include": [".", "../types/*.d.ts"],
+  "exclude": ["dist", "build", "node_modules", "../../packages/types/surveys.d.ts"],
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@prisma/client/*": ["@cowk8s/database/client/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
+  }
 }

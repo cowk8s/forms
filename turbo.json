@@ -27,6 +27,7 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"],
       "env": [
+        "DATABASE_URL"
       ]
     },
     "build:dev": {
@@ -41,6 +42,9 @@
     },
     "db:migrate:dev": {
       "outputs": []
+    },
+    "db:start": {
+      "cache": false
     },
     "dev": {
       "cache": false,

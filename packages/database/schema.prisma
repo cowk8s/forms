@@ -1,3 +1,14 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
 
 enum SurveyType {
   link
@@ -22,11 +33,22 @@ model Environment {
   createdAt             DateTime         @default(now()) @map(name: "created_at")
   updatedAt             DateTime         @updatedAt @map(name: "updated_at")
 
+  product               Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId             String
 
   surveys               Survey[]
 
   @@index([productId])
+}
+
+model Product {
+  id                   String          @id @default(cuid())
+  createdAt            DateTime        @default(now()) @map(name: "created_at")
+  updatedAt            DateTime        @updatedAt @map(name: "updated_at")
+  name                 String
+
+  organizationId       String
+  environments         Environment[]
 }
 
 model User {

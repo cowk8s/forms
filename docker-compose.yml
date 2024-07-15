@@ -1,0 +1,61 @@
+# This should be the same as below if you are running via docker compose up
+x-webapp-url: &webapp_url http://localhost:3000
+
+# PostgreSQL DB for Formbricks to connect to
+x-database-url: &database_url postgresql://postgres:postgres@postgres:5432/formbricks?schema=public
+
+services:
+  postgres:
+    restart: always
+    image: postgres:15-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+  forms:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+
+    environment:
+      WEBAPP_URL: *webapp_url
+      DATABASE_URL: *database_url
+      # NEXTAUTH_SECRET: *nextauth_secret
+      # MAIL_FROM: *mail_from
+      # SMTP_HOST: *smtp_host
+      # SMTP_PORT: *smtp_port
+      # SMTP_SECURE_ENABLED: *smtp_secure_enabled
+      # SMTP_USER: *smtp_user
+      # SMTP_PASSWORD: *smtp_password
+      # ENCRYPTION_KEY: *encryption_key
+      # SHORT_URL_BASE: *short_url_base
+      # PRIVACY_URL: *privacy_url
+      # TERMS_URL: *terms_url
+      # IMPRINT_URL: *imprint_url
+      # EMAIL_VERIFICATION_DISABLED: *email_verification_disabled
+      # PASSWORD_RESET_DISABLED: *password_reset_disabled
+      # EMAIL_AUTH_DISABLED: *email_auth_disabled
+      # SIGNUP_DISABLED: *signup_disabled
+      # INVITE_DISABLED: *invite_disabled
+      # SENTRY_IGNORE_API_RESOLUTION_ERROR: *sentry_ignore_api_resolution_error
+      # NEXT_PUBLIC_SENTRY_DSN: *next_public_sentry_dsn
+      # GITHUB_ID: *github_id
+      # GITHUB_SECRET: *github_secret
+      # GOOGLE_CLIENT_ID: *google_client_id
+      # GOOGLE_CLIENT_SECRET: *google_client_secret
+      # CRON_SECRET: *cron_secret
+      # REDIS_URL: *redis_url
+
+    volumes:
+      - uploads:/home/nextjs/apps/web/uploads/
+
+volumes:
+  postgres:
+    driver: local
+  uploads:      

@@ -48,6 +48,7 @@
     "dotenv-cli": "^7.4.2"
   },
   "devDependencies": {
+    "@types/node": "^20.14.10",
     "@cowk8s/config-typescript": "workspace:*",
     "@cowk8s/types": "workspace:*",
     "@paralleldrive/cuid2": "^2.2.2",
