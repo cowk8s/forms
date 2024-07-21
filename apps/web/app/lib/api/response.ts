@@ -11,7 +11,8 @@ interface ApiErrorResponse {
   | "not_found"
   | "gone"
   | "bad_request"
-  | "internal_server_error";
+  | "internal_server_error"
+  | "unauthorized";
   message: string;
   details: {
     [key: string]: string | string[] | number | number[] | boolean | boolean[];
@@ -92,6 +93,25 @@ const successResponse = (data: Object, cors: boolean = false, cache: string = "p
   );
 };
 
+const unauthorizedResponse = (cors: boolean = false, cache: string = "private, no-store") => {
+  const headers = {
+    ...(cors && corsHeaders),
+    "Cache-Control": cache,
+  };
+
+  return Response.json(
+    {
+      code: "unauthorized",
+      message: "You are not authorized to access this resource",
+      details: {},
+    } as ApiErrorResponse,
+    {
+      status: 401,
+      headers,
+    }
+  );
+};
+
 const internalServerErrorResponse = (
   message: string,
   cors: boolean = false,
@@ -119,5 +139,6 @@ export const responses = {
   badRequestResponse,
   successResponse,
   internalServerErrorResponse,
-  notFoundResponse
+  notFoundResponse,
+  unauthorizedResponse
 };

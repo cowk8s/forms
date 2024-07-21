@@ -1,10 +1,12 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useMemo, useRef, useState } from "react";
+import { Controller, FormProvider, useForm } from "react-hook-form";
 
 import { Button } from "@cowk8s/ui/Button";
+import { PasswordInput } from "@cowk8s/ui/PasswordInput";
+import { cn } from "@cowk8s/lib/cn";
 
 interface TSigninFormState {
   email: string;
@@ -20,11 +22,17 @@ interface SignInFormProps {
 export const SigninForm = ({
   emailAuthEnabled
 }: SignInFormProps) => {
-  // const router = useRouter();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const emailRef = useRef<HTMLInputElement>(null);
   const formMethods = useForm<TSigninFormState>();
 
   const [loggingIn] = useState(false);
-  const [showLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [totpLogin, setTotpLogin] = useState(false);
+
+  const formRef = useRef<HTMLFormElement>(null);
 
   const formLabel = useMemo(() => {
     return "Login to your account";
@@ -33,23 +41,52 @@ export const SigninForm = ({
   return (
     <FormProvider {...formMethods}>
       <div className="text-center">
-        <h1>{formLabel}</h1>
-        <div>
-          <form>
+        <h1 className="mb-4 text-slate-700">{formLabel}</h1>
+        <div className="space-y-2">
+          <form className="space-y-2">
             {showLogin && (
-              <div>
-                <div>
-                  <label>
+              <div className={cn(totpLogin && "hidden")}>
+                <div className="mb-2 transition-all duration-500 ease-in-out">
+                  <label htmlFor="email" className="sr-only">
                     Email address
                   </label>
                   <input
-
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    placeholder="work@email.com"
+                    defaultValue={searchParams?.get("email") || ""}
+                    className="focus:border-brand focus:ring-brand block w-full rounded-md border-slate-300 shadow-sm sm:text-sm"
+                    {...formMethods.register("email", {
+                      required: true,
+                      pattern: /\S+@\S+\.\S+/,
+                    })}
                   />
                 </div>
-                <div>
-                  <label>
+                <div className="transition-all duration-500 ease-in-out">
+                  <label htmlFor="password" className="sr-only">
                     Password
                   </label>
+                  <Controller
+                    name="password"
+                    control={formMethods.control}
+                    render={({ field }) => (
+                      <PasswordInput
+                        id="password"
+                        autoComplete="current-password"
+                        placeholder="*******"
+                        aria-placeholder="password"
+                        onFocus={() => setIsPasswordFocused(true)}
+                        required
+                        className="focus:border-brand focus:ring-brand block w-full rounded-md border-slate-300 shadow-sm sm:text-sm"
+                        {...field}
+                      />
+                    )}
+                    rules={{
+                      required: true,
+                    }}
+                  />
                 </div>
               </div>
             )}
@@ -58,13 +95,17 @@ export const SigninForm = ({
               <Button
                 onClick={() => {
                   if (!showLogin) {
-
+                    setShowLogin(true);
+                    // Add a slight delay before focusing the input field to ensure it's visible
+                    setTimeout(() => emailRef.current?.focus(), 100);
+                  } else if (formRef.current) {
+                    formRef.current.requestSubmit();
                   }
                 }}
                 variant="darkCTA"
                 className="w-full justify-center"
                 loading={loggingIn}>
-                "Submit"
+                {totpLogin ? "Submit" : "Login with Email"}
               </Button>
             )}
           </form>

@@ -27,7 +27,15 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"],
       "env": [
-        "DATABASE_URL"
+        "DATABASE_URL",
+        "EMAIL_AUTH_DISABLED",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
+        "GOOGLE_SHEETS_CLIENT_ID",
+        "GOOGLE_SHEETS_CLIENT_SECRET",
+        "GOOGLE_SHEETS_REDIRECT_URL",
+        "NEXTAUTH_SECRET",
+        "REDIS_HTTP_URL"
       ]
     },
     "build:dev": {
