@@ -1,13 +1,13 @@
 "use client";
 
-import { SignupOptions } from "@cowk8s/ui/SignupOptions";
+// import { SignupOptions } from "@cowk8s/ui/SignupOptions";
 
 interface SignupFormProps {
   webAppUrl: string;
 }
 
 export const SignupForm = ({
-  webAppUrl
+  
 }: SignupFormProps) => {
   return (
     <>

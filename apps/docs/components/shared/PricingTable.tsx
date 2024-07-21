@@ -1,5 +1,3 @@
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
-
 export const PricingTable = ({ leadRow, pricing, endRow }) => {
   return (
     <div className="grid grid-cols-1 px-1 md:gap-4 md:px-16">

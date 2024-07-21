@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {  } from "react";
 import { TProductConfigChannel } from "@cowk8s/types/product";
 
 interface OnboardingSurveyProps {
@@ -9,8 +9,8 @@ interface OnboardingSurveyProps {
   userId: string;
 }
 
-export const OnboardingSurvey = ({ organizationId, channel, userId }: OnboardingSurveyProps) => {
-  const [isIFrameVisible, setIsIFrameVisible ] = useState(false);
+export const OnboardingSurvey = ({ }: OnboardingSurveyProps) => {
+  // const [isIFrameVisible, setIsIFrameVisible ] = useState(false);
 
   return (
     <div>

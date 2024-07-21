@@ -1,5 +1,5 @@
 
-import { Popover, Transition } from "@headlessui/react";
+import { Popover } from "@headlessui/react";
 
 export default function Header() {
 

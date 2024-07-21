@@ -15,7 +15,7 @@ interface OnboardingSurveyPageProps {
   };
 }
 
-const Page = async ({ params, searchParams }: OnboardingSurveyPageProps) => {
+const Page = async ({ searchParams }: OnboardingSurveyPageProps) => {
   const session = await getServerSession(authOptions);
   if (!session) {
     return redirect(`/auth/login`);

@@ -13,8 +13,7 @@
     "@cowk8s/types": "workspace:*",
     "concurrently": "^8.2.2",
     "@cowk8s/eslint-config": "workspace:*",
-    "postcss": "^8.4.39",
-    "react": "18.3.1"
+    "postcss": "^8.4.39"
   },
   "dependencies": {
     "@cowk8s/database": "workspace:*",
@@ -45,6 +44,7 @@
     "lexical": "^0.16.1",
     "lucide-react": "^0.405.0",
     "mime": "^4.0.4",
+    "react": "19.0.0-rc-935180c7e0-20240524",
     "react-colorful": "^5.6.1",
     "react-confetti": "^6.1.0",
     "react-day-picker": "^8.10.1",

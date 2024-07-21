@@ -1,22 +1,17 @@
 import headlessuiPlugin from "@headlessui/tailwindcss";
-import forms from "@tailwindcss/forms";
 import typographyPlugin from "@tailwindcss/typography";
 import { type Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
-
 import typographyStyles from "./typography";
 
 export default {
   trailingSlash: true,
   content: [
     // app content
-    "./app/**/*.{js,mjs,jsx,ts,tsx,mdx}", // Note the addition of the `app` directory.
-    "./pages/**/*.{js,mjs,jsx,ts,tsx,mdx}",
+    "./app/**/*.{js,mjs,jsx,ts,tsx,mdx}",
     "./components/**/*.{js,mjs,jsx,ts,tsx,mdx}",
     "./lib/**/*.{js,mjs,jsx,ts,tsx,mdx}",
     "./mdx/**/*.{js,mjs,jsx,ts,tsx,mdx}",
-    // include packages if not transpiling
-    "../../packages/ui/components/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
   theme: {
@@ -38,6 +33,15 @@ export default {
     },
     typography: typographyStyles,
     extend: {
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-1990px)" },
+        },
+      },
+      animation: {
+        scroll: "scroll 60s linear infinite",
+      },
       boxShadow: {
         glow: "0 0 4px rgb(0 0 0 / 0.1)",
       },
@@ -57,13 +61,12 @@ export default {
           light: "#00C4B8",
           dark: "#00C4B8",
         },
-
         black: {
           DEFAULT: "#0F172A",
         },
       },
       fontFamily: {
-        sans: ["Poppins", ...defaultTheme.fontFamily.sans],
+        sans: ["Jost", ...defaultTheme.fontFamily.sans],
         display: ["Lexend", ...defaultTheme.fontFamily.sans],
         kablammo: ["Kablammo", "sans"],
       },
@@ -78,5 +81,5 @@ export default {
       },
     },
   },
-  plugins: [typographyPlugin, headlessuiPlugin, forms],
+  plugins: [typographyPlugin, headlessuiPlugin],
 } satisfies Config;

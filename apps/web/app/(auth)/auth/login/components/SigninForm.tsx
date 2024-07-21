@@ -1,8 +1,8 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Controller, FormProvider, SubmitHandler, useForm } from "react-hook-form";
+// import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
 import { Button } from "@cowk8s/ui/Button";
 
@@ -20,11 +20,11 @@ interface SignInFormProps {
 export const SigninForm = ({
   emailAuthEnabled
 }: SignInFormProps) => {
-  const router = useRouter();
+  // const router = useRouter();
   const formMethods = useForm<TSigninFormState>();
 
-  const [loggingIn, setLoggingIn] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
+  const [loggingIn] = useState(false);
+  const [showLogin] = useState(false);
 
   const formLabel = useMemo(() => {
     return "Login to your account";

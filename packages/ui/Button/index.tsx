@@ -2,8 +2,6 @@ import { LucideIcon } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, forwardRef } from "react";
 
-import { cn } from "@cowk8s/lib/cn";
-
 export type ButtonBaseProps = {
   variant?: "highlight" | "primary" | "secondary" | "minimal" | "warn" | "alert" | "darkCTA";
   size?: "base" | "sm" | "lg" | "fab" | "icon";
@@ -25,7 +23,6 @@ export const Button: React.ForwardRefExoticComponent<
   React.PropsWithoutRef<ButtonProps> & React.RefAttributes<HTMLAnchorElement | HTMLButtonElement>
 > = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(function Button(
   props: ButtonProps,
-  forwardedRef
 ) {
   const {
     loading = false,
@@ -46,15 +43,10 @@ export const Button: React.ForwardRefExoticComponent<
       ...passThroughProps,
       disabled,
       ref: forwardRef,
-      className: 
     }
   )
 
-  return props.href ? (
-    <Link passHref href={props.href} shallow={shallow && shallow} target={props.target || "_self"}>
-      {element}
-    </Link>
-  ) : (
-    element
+  return (
+    <></>
   )
 })

@@ -1,5 +1,5 @@
-import { Result, err, ok, wrapThrows } from "@azidev/azicloud-types/errorHandlers";
-import { NetworkError } from "@azidev/azicloud-types/errors";
+import { Result, err, ok, wrapThrows } from "@cowk8s/types/errorHandlers";
+import { NetworkError } from "@cowk8s/types/errors";
 
 import { ApiResponse } from "../types";
 

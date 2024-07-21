@@ -7,7 +7,7 @@ interface ChannelPageProps {
   };
 }
 
-const Page = async ({ params }: ChannelPageProps) => {
+const Page = async ({  }: ChannelPageProps) => {
   return (
     <div>
       <Header

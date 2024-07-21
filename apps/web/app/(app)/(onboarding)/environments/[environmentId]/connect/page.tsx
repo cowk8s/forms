@@ -6,7 +6,7 @@ interface ConnectPageProps {
   };
 }
 
-const Page = async ({ params }: ConnectPageProps) => {
+const Page = async ({ }: ConnectPageProps) => {
   return (
     <>
     </>

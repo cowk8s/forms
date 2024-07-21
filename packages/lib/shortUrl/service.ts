@@ -1,0 +1,100 @@
+import { Prisma } from "@prisma/client";
+import { customAlphabet } from "nanoid";
+import { cache as reactCache } from "react";
+import { z } from "zod";
+import { prisma } from "@cowk8s/database";
+import { DatabaseError } from "@cowk8s/types/errors";
+import { TShortUrl, ZShortUrlId } from "@cowk8s/types/short-url";
+import { cache } from "../cache";
+import { validateInputs } from "../utils/validate";
+import { shortUrlCache } from "./cache";
+
+// Create the short url and return it
+export const createShortUrl = async (url: string): Promise<TShortUrl> => {
+  validateInputs([url, z.string().url()]);
+
+  try {
+    // Check if an entry with the provided fullUrl already exists.
+    const existingShortUrl = await getShortUrlByUrl(url);
+
+    if (existingShortUrl) {
+      return existingShortUrl;
+    }
+
+    // If an entry with the provided fullUrl does not exist, create a new one.
+    const id = customAlphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 10)();
+
+    const shortUrl = await prisma.shortUrl.create({
+      data: {
+        id,
+        url,
+      },
+    });
+
+    shortUrlCache.revalidate({
+      id: shortUrl.id,
+      url: shortUrl.url,
+    });
+
+    return shortUrl;
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new DatabaseError(error.message);
+    }
+
+    throw error;
+  }
+};
+
+// Get the full url from short url and return it
+export const getShortUrl = reactCache(
+  (id: string): Promise<TShortUrl | null> =>
+    cache(
+      async () => {
+        validateInputs([id, ZShortUrlId]);
+        try {
+          return await prisma.shortUrl.findUnique({
+            where: {
+              id,
+            },
+          });
+        } catch (error) {
+          if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new DatabaseError(error.message);
+          }
+
+          throw error;
+        }
+      },
+      [`getShortUrl-${id}`],
+      {
+        tags: [shortUrlCache.tag.byId(id)],
+      }
+    )()
+);
+
+export const getShortUrlByUrl = reactCache(
+  (url: string): Promise<TShortUrl | null> =>
+    cache(
+      async () => {
+        validateInputs([url, z.string().url()]);
+        try {
+          return await prisma.shortUrl.findUnique({
+            where: {
+              url,
+            },
+          });
+        } catch (error) {
+          if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new DatabaseError(error.message);
+          }
+
+          throw error;
+        }
+      },
+      [`getShortUrlByUrl-${url}`],
+      {
+        tags: [shortUrlCache.tag.byUrl(url)],
+      }
+    )()
+);
