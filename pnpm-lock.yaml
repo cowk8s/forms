@@ -735,9 +735,6 @@ importers:
       '@cowk8s/lib':
         specifier: workspace:*
         version: link:../lib
-      '@cowk8s/surveys':
-        specifier: workspace:*
-        version: link:../surveys
       '@lexical/code':
         specifier: ^0.16.1
         version: 0.16.1

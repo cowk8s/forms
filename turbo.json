@@ -51,6 +51,9 @@
     "db:migrate:dev": {
       "outputs": []
     },
+    "db:push": {
+      "outputs": []
+    },
     "db:start": {
       "cache": false
     },

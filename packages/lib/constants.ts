@@ -25,6 +25,8 @@ export const SYNC_USER_IDENTIFICATION_RATE_LIMIT = {
   allowedPerInterval: 5,
 };
 
+export const EMAIL_VERIFICATION_DISABLED = env.EMAIL_VERIFICATION_DISABLED === "1";
+
 export const GOOGLE_CLIENT_ID = env.GOOGLE_CLIENT_ID;
 export const GOOGLE_CLIENT_SECRET = env.GOOGLE_CLIENT_SECRET;
 

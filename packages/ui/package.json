@@ -18,7 +18,6 @@
   "dependencies": {
     "@cowk8s/database": "workspace:*",
     "@cowk8s/lib": "workspace:*",
-    "@cowk8s/surveys": "workspace:*",
     "@lexical/code": "^0.16.1",
     "@lexical/link": "^0.16.1",
     "@lexical/list": "^0.16.1",
